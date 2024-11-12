@@ -11,6 +11,9 @@ from libmediathek4 import lm4
 #https://api.zdf.de/cmdm/epg/broadcasts?from=2016-10-28T05%3A30%3A00%2B02%3A00&to=2016-10-29T05%3A29%3A00%2B02%3A00&limit=500&profile=teaser&tvServices=ZDF
 #https://api.3sat.de/content/documents/zdf/programm?profile=video-app&maxResults=200&airtimeDate=2019-06-09T12:00:00.000Z&includeNestedObjects=true
 
+# import parsers
+from .libzdfjsonparser import parser
+from .libzdfjsonparser2 import parser2
 
 class libzdf(lm4):
     def __init__(self):
@@ -36,11 +39,9 @@ class libzdf(lm4):
                 }
 
         if self.apiVersion == 1:
-            import libzdfjsonparser as jsonParser
-            self.parser = jsonParser.parser()
+             self.parser = jsonParser.parser()
         elif self.apiVersion == 2:
-            import libzdfjsonparser2 as jsonParser
-            self.parser = jsonParser.parser2()
+            self.parser = parser2()
 
         self.parser.baseApi = self.baseApi
         self.parser.userAgent = self.userAgent

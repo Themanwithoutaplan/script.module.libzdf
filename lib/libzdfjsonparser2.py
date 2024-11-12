@@ -10,10 +10,10 @@ import libmediathek4utils as lm4utils
 
 log = lm4utils.log
 
-import libzdfjsonparser as jsonParser
-parser = jsonParser.parser()
+from .libzdfjsonparser import parser
+# parser = jsonParser.parser()
 
-class parser2(jsonParser.parser):
+class parser2(parser):
     def _parsePageIndex2(self,j):
         for module in j['module']:
             if 'teaser' in module:
